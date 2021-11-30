@@ -1,31 +1,62 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_luntian_app/screens/login_page.dart';
-// import 'package:firebase_app_check/firebase_app_check.dart';
-// void main() {
-//   runApp(MyApp());
-// }
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-//   await FirebaseAppCheck.instance
-//       .activate(webRecaptchaSiteKey: 'recaptcha-v3-site-key');
+import './consts/theme_data.dart';
+import './provider/dark_theme_provider.dart';
+import './screens/bottom_bar.dart';
+import './screens/wishlist.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'inner_screens/brands_navigation_rail.dart';
+import 'screens/cart.dart';
+import 'screens/feeds.dart';
+
+void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  void getCurrentAppTheme() async {
+    themeChangeProvider.darkTheme =
+        await themeChangeProvider.darkThemePreferences.getTheme();
+  }
+
+  @override
+  void initState() {
+    getCurrentAppTheme();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginPage(),
-    );
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) {
+            return themeChangeProvider;
+          })
+        ],
+        child:
+            Consumer<DarkThemeProvider>(builder: (context, themeData, child) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: Styles.themeData(themeChangeProvider.darkTheme, context),
+            home: LoginPage(),
+            //initialRoute: '/',
+            routes: {
+              //   '/': (ctx) => LandingPage(),
+              BrandNavigationRailScreen.routeName: (ctx) =>
+                  BrandNavigationRailScreen(),
+              CartScreen.routeName: (ctx) => CartScreen(),
+              Feeds.routeName: (ctx) => Feeds(),
+              WishlistScreen.routeName: (ctx) => WishlistScreen(),
+            },
+          );
+        }));
   }
 }

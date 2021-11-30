@@ -1,11 +1,11 @@
+import '../consts/my_icons.dart';
+import '../screens/search.dart';
+import '../screens/user_info.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_luntian_app/screens/cart_empty.dart';
 
 import 'cart.dart';
 import 'feeds.dart';
 import 'home.dart';
-import 'search.dart';
-import 'user_info.dart';
 
 class BottomBarScreen extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         'page': Search(),
       },
       {
-        'page': CartEmptyPage(), //Cart(),
+        'page': CartScreen(),
       },
       {
         'page': UserInfo(),
@@ -73,27 +73,27 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
               currentIndex: _selectedPageIndex,
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                  icon: Icon(MyAppIcons.home),
+                  title: Text('Home'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.rss_feed),
-                  label: 'Feeds',
+                  icon: Icon(MyAppIcons.rss),
+                  title: Text('Feeds'),
                 ),
                 BottomNavigationBarItem(
                   activeIcon: null,
                   icon: Icon(null),
-                  label: 'Search',
+                  title: Text('Search'),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.shopping_bag,
+                    MyAppIcons.bag,
                   ),
-                  label: 'Cart',
+                  title: Text('Cart'),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'User',
+                  icon: Icon(MyAppIcons.user),
+                  title: Text('User'),
                 ),
               ],
             ),
@@ -105,11 +105,12 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FloatingActionButton(
+          backgroundColor: Colors.purple,
           hoverElevation: 10,
           splashColor: Colors.grey,
           tooltip: 'Search',
           elevation: 4,
-          child: Icon(Icons.search),
+          child: Icon(MyAppIcons.search),
           onPressed: () => setState(() {
             _selectedPageIndex = 2;
           }),

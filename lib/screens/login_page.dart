@@ -1,8 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_luntian_app/screens/register_page.dart';
-import 'package:flutter_luntian_app/widgets/google_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'bottom_bar.dart';
@@ -15,7 +13,42 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    Widget buildSocialBtn(Function onTap, AssetImage logo) {
+    // Widget _buildEmailTF() {
+    //   return Column(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: <Widget>[
+    //       Text(
+    //         'Email',
+    //         //style: kLabelStyle,
+    //       ),
+    //       SizedBox(height: 10.0),
+    //       Container(
+    //         alignment: Alignment.centerLeft,
+    //         //decoration: kBoxDecorationStyle,
+    //         height: 60.0,
+    //         child: TextField(
+    //           keyboardType: TextInputType.emailAddress,
+    //           style: TextStyle(
+    //             color: Colors.white,
+    //             fontFamily: 'OpenSans',
+    //           ),
+    //           decoration: InputDecoration(
+    //             border: InputBorder.none,
+    //             contentPadding: EdgeInsets.only(top: 14.0),
+    //             prefixIcon: Icon(
+    //               Icons.email,
+    //               color: Colors.white,
+    //             ),
+    //             hintText: 'Enter your Email',
+    //             //hintStyle: kHintTextStyle,
+    //           ),
+    //         ),
+    //       ),
+    //     ],
+    //   );
+    // }
+
+    Widget _buildSocialBtn(Function onTap, AssetImage logo) {
       return GestureDetector(
         onTap: onTap,
         child: Container(
@@ -45,13 +78,18 @@ class _LoginPageState extends State<LoginPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            buildSocialBtn(
+            _buildSocialBtn(
               () => print('Login with Facebook'),
               AssetImage(
                 'assets/images/facebook.jpg',
               ),
             ),
-            GoogleSignInButton()
+            _buildSocialBtn(
+              () => print('Login with Google'),
+              AssetImage(
+                'assets/images/google.jpg',
+              ),
+            ),
           ],
         ),
       );
@@ -61,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
       return GestureDetector(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => RegisterPage()),
+          MaterialPageRoute(builder: (context) => BottomBarScreen()),
         ),
         child: RichText(
           text: TextSpan(
@@ -75,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               TextSpan(
-                text: '   Sign Up',
+                text: 'Sign Up',
                 style: TextStyle(
                   color: Color(0xff41a58d),
                   fontSize: 16.0,
