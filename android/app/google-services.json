@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "848823448507",
+    "project_id": "luntianshop-df8e4",
+    "storage_bucket": "luntianshop-df8e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848823448507:android:41edbe4760cb8af37b0a9e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_luntian_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848823448507-igd9tpti86jq07ossav1afeuv9v3u9o4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_luntian_app",
+            "certificate_hash": "919c47fc1f3396161015f75bfec8b52a77dd6da7"
+          }
+        },
+        {
+          "client_id": "848823448507-hsq1nqqds1bid0i27i6r45p7qdtfnnuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAISIszUkaD3f_Rtdovb9uclL7J5hHI1Lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848823448507-hsq1nqqds1bid0i27i6r45p7qdtfnnuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
